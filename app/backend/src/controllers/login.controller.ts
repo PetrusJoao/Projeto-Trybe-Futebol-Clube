@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-// import { RequestInterface } from '../interfaces/user.interface';
-import UserModel from '../database/models/UserModel';
+import LoginService from '../services/login.service';
 import createToken from '../helpers/createToken';
 
 export default class LoginController {
@@ -13,9 +12,9 @@ export default class LoginController {
   };
 
   static loginValidate = async (req: Request, res: Response) => {
-    const { email } = req.body;
-    const user = await UserModel.findOne({ where: { email } });
+    const { data } = req.body;
+    const role = await LoginService.findUser(data.username);
 
-    return res.status(200).json({ role: user?.role });
+    return res.status(200).json({ role });
   };
 }

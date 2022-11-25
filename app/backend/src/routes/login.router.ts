@@ -16,8 +16,6 @@ loginRouter.post(
 loginRouter.get(
   '/validate',
   authMiddleware,
-  emailValidation,
-  passwordValidation,
   (req, res) => LoginController.loginValidate(req, res),
 );
 

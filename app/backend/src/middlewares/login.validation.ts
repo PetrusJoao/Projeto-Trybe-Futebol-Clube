@@ -15,7 +15,6 @@ const userSchema = Joi.object<UserInterface>({
 const emailValidation = async (req: Request, res: Response, next: NextFunction) => {
   const login = req.body;
   const { error } = userSchema.validate({ email: login.email, password: login.password });
-  console.log(error);
   if (error) {
     return res.status(400).json({ message: error.message });
   }
@@ -29,7 +28,6 @@ const emailValidation = async (req: Request, res: Response, next: NextFunction) 
 const passwordValidation = async (req: Request, res: Response, next: NextFunction) => {
   const login = req.body;
   const { error } = userSchema.validate({ email: login.email, password: login.password });
-  console.log(error);
   if (error) {
     return res.status(400).json({ message: error.message });
   }

@@ -10,7 +10,7 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
 
-    req.body.user = decoded;
+    req.body = decoded;
 
     next();
   } catch (err) {
