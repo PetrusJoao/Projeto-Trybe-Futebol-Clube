@@ -7,6 +7,7 @@ export default class LoginService {
     if (!role) {
       throw new Error('Indefinido');
     }
+
     return role.role;
   };
 }

@@ -9,12 +9,12 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
       return res.status(401).json({ message: 'Token não encontrado!' });
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+    // console.log(decoded);
 
-    req.body = decoded;
+    req.body.user = decoded;
 
     next();
   } catch (err) {
-    console.log(err);
-    return res.status(401).json({ message: 'Não autorizado!' });
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
 }

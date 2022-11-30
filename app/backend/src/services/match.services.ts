@@ -1,6 +1,7 @@
+import MatchInterface from '../interfaces/match.interface';
 import MatchModel from '../database/models/MatchesModel';
 
-export default class LoginService {
+export default class MatchService {
   static findAllMatches = async () => {
     const matches = await MatchModel.scope('all').findAll();
     if (!matches) {
@@ -23,5 +24,18 @@ export default class LoginService {
       throw new Error('Indefinido');
     }
     return finishedMatches;
+  };
+
+  static createMatch = async (match: MatchInterface) => {
+    // console.log(match);
+
+    const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = match;
+    try {
+      const matchCreated = await MatchModel
+        .create({ homeTeam, homeTeamGoals, awayTeam, awayTeamGoals, inProgress: true });
+      return matchCreated;
+    } catch (error) {
+      console.log(error);
+    }
   };
 }

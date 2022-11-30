@@ -12,7 +12,8 @@ export default class LoginController {
   };
 
   static loginValidate = async (req: Request, res: Response) => {
-    const { data } = req.body;
+    const { user } = req.body;
+    const { data } = user;
     const role = await LoginService.findUser(data.username);
 
     return res.status(200).json({ role });
