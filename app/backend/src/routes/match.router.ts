@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import matchValidation from '../middlewares/match.valitadion';
 import MatchController from '../controllers/match.controller';
 import authMiddleware from '../middlewares/validateToken';
 
@@ -14,6 +15,12 @@ matchRouter.get(
 matchRouter.post(
   '/',
   authMiddleware,
+  matchValidation,
   (req, res) => matchController.createMatch(req, res),
+);
+
+matchRouter.patch(
+  '/:id/finish',
+  (req, res) => matchController.finishMatch(req, res),
 );
 export default matchRouter;

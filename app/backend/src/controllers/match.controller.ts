@@ -20,11 +20,17 @@ export default class MatchController {
 
   createMatch = async (req: Request, res: Response) => {
     const match = req.body;
-    // const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
-    // console.log(match);
 
     const matchCreated = await MatchService.createMatch(match);
 
     return res.status(201).json(matchCreated);
+  };
+
+  finishMatch = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    await MatchService.finishMatch(id);
+
+    return res.status(200).json({ message: 'Finished' });
   };
 }

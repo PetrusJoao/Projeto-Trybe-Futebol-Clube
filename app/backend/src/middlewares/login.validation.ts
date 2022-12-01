@@ -41,11 +41,3 @@ const passwordValidation = async (req: Request, res: Response, next: NextFunctio
 };
 
 export { emailValidation, passwordValidation };
-
-//   const login = req.body;
-//   const { email, password } = login;
-//   const passwordMinLength = 6;
-//
-//   if (!email || !password || password.length < passwordMinLength) {
-//     return res.status(400).json({ message: 'All fields must be filled' });
-//   }

@@ -1,6 +1,6 @@
 import TeamsModel from '../database/models/TeamsModel';
 
-export default class MatchService {
+export default class TeamService {
   static findAllTeams = async () => {
     const teams = await TeamsModel.findAll();
     if (!teams) {
@@ -9,11 +9,9 @@ export default class MatchService {
     return teams;
   };
 
-  static findTeamById = async (id:string) => {
-    const team = await TeamsModel.findOne({ where: { id } });
-    if (!team) {
-      throw new Error('Indefinido');
-    }
+  static findTeamById = async (id: string | number) => {
+    const team = await TeamsModel.findByPk(id);
+
     return team;
   };
 }

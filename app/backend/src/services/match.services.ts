@@ -27,8 +27,6 @@ export default class MatchService {
   };
 
   static createMatch = async (match: MatchInterface) => {
-    // console.log(match);
-
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = match;
     try {
       const matchCreated = await MatchModel
@@ -37,5 +35,12 @@ export default class MatchService {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  static finishMatch = async (id: number | string) => {
+    // const match = await MatchModel.scope('inProgress').findByPk(id);
+    const finishedMatch = await MatchModel.update({ inProgress: false }, { where: { id } });
+
+    return finishedMatch;
   };
 }
