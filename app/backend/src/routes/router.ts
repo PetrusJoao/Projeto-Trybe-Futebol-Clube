@@ -8,6 +8,5 @@ const router = Router();
 router.use('/login', loginRouter);
 router.use('/matches', matchRouter);
 router.use('/teams', teamsRouter);
-// router.use('/orders', ordersRouter);
 
 export default router;
