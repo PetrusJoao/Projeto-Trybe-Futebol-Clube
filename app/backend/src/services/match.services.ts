@@ -43,4 +43,13 @@ export default class MatchService {
 
     return finishedMatch;
   };
+
+  static async updateStatus(
+    id: number | string,
+    homeTeamGoals: MatchModel,
+    awayTeamGoals: MatchModel,
+  ) {
+    const match = await MatchModel.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+    return match;
+  }
 }

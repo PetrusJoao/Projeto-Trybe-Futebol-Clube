@@ -23,4 +23,10 @@ matchRouter.patch(
   '/:id/finish',
   (req, res) => matchController.finishMatch(req, res),
 );
+
+matchRouter.patch(
+  '/:id',
+  (req, res) => MatchController.updateStatus(req, res),
+);
+
 export default matchRouter;
